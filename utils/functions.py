@@ -55,14 +55,18 @@ def withdraw_operations(input_operations_list, number_operation):
 
     :param input_operations_list: Список с экземплярами класса "Операции"
     :param number_operation: количество возвращаемых экземпляров
-    :return:
+    :return: возвращаем собранный текст для вывода
     """
+    return_text = ""
     for operation in recent_transactions(input_operations_list):
         if check_is_executed(operation.state) and number_operation > 0:
-            print(convert_date_operation(operation.date_operation) + " " + operation.description)
-            print(convert_secret_account(operation.from_account) + " -> " + convert_secret_account(operation.to_account))
-            print(operation.operation_amount["amount"] + " " + operation.operation_amount["currency"]["name"] + "\n")
+            return_text = return_text + convert_date_operation(operation.date_operation) + " " + operation.description \
+                          + "\n" + convert_secret_account(operation.from_account) + " -> " \
+                          + convert_secret_account(operation.to_account) + "\n" + operation.operation_amount["amount"] \
+                          + " " + operation.operation_amount["currency"]["name"] + "\n\n"
             number_operation = number_operation - 1
+
+    return return_text[:-2]
 
 
 def convert_secret_account(account):
@@ -81,7 +85,7 @@ def convert_secret_account(account):
     elif account[-4:].lower() == "счет":
         return account
     else:
-        return account[:account.rfind(' ')] + " " + account[-16:-12] + " " + account[-11:-10] + "** **** " + account[-4:]
+        return account[:account.rfind(' ')] + " " + account[-16:-12] + " " + account[-12:-10] + "** **** " + account[-4:]
 
 
 def convert_date_operation(date_operation):

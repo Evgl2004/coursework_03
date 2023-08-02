@@ -4,7 +4,7 @@ from utils.functions import withdraw_operations
 
 
 def main():
-    withdraw_operations(load_operations(config.PATH_JSON_DATA), 5)
+    print(withdraw_operations(load_operations(config.PATH_JSON_DATA), 5))
 
 
 main()

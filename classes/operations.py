@@ -13,5 +13,5 @@ class Operation:
 
     def __repr__(self):
         return f'Operation (id_operation="{self.id_operation}", date_operation="{self.date_operation}",' \
-               f' state="{self.state}), operation_amount="{self.operation_amount}", description="{self.description}", ' \
-               f' from_account="{self.from_account}", from_account="{self.from_account}"'
+               f' state="{self.state}"), operation_amount="{self.operation_amount}", description="{self.description}", ' \
+               f' from_account="{self.from_account}", to_account="{self.to_account}"'
